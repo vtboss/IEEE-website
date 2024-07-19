@@ -1,0 +1,239 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Header Styles */
+header {
+  background-image: url('./pics/v915-techi-025-l.jpg'); /* Add your background image path */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo-container {
+  flex: 1;
+}
+
+header .logo {
+  width: 150px;
+}
+
+header nav {
+  flex: 2;
+  text-align: right;
+}
+
+header nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+header nav ul li {
+  margin-left: 2rem;
+  font-weight: bolder;
+}
+
+header nav a {
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+header nav a:hover {
+  background-color: #003366;
+  border-radius: 5px;
+  color: white;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: -50px; /* Removed negative margin */
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  object-fit: cover;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin: 0;
+  color: #00457c;
+}
+
+.hero .cta-button {
+  background-color: #ff6f61;
+  color: white;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.hero .cta-button:hover {
+  background-color: #e65c50;
+}
+
+/* Section Styles */
+section {
+  padding: 2rem 0;
+  position: relative;
+  color: white;
+}
+
+#about {
+  text-align: center;
+  background-color: #333; /* Set background color */
+}
+
+#membership {
+  text-align: center;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.section:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+#hero:before {
+  background-image: url('./pics/sgbit\ topview.jpg'); /* Add your background image path */
+}
+
+
+#events:before {
+  background-image: url('./pics/events_background01.jpg'); /* Add your background image path */
+}
+
+#news:before {
+  background-image: url('./pics/news.jpg'); /* Add your background image path */
+}
+
+#membership:before {
+  background-image: url('./pics/membership.jpg'); /* Add your background image path */
+}
+
+#testimonials:before {
+  background-image: url('./pics/about.jpg'); /* Add your background image path */
+}
+
+section h2 {
+  margin-bottom: 1rem;
+}
+
+.event, .news-item, .testimonial {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.view-all-button, .cta-button {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #00457c;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.view-all-button:hover, .cta-button:hover {
+  background-color: #003366;
+}
+
+blockquote {
+  border-left: 5px solid #00457c;
+  padding-left: 1rem;
+  margin: 1rem 0;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 2rem 0;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer h3 {
+  margin-top: 0;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer .social-media img {
+  width: 30px;
+  margin-right: 10px;
+}

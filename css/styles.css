@@ -1,0 +1,546 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sofadi+One&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.max-width{
+  max-width: 1300px;
+  padding: 0 80px;
+  margin: auto;
+}
+
+
+
+/* navbar */
+.navbar{
+  position: fixed;
+  width: 100%;
+  padding: 30px 0;
+  font-family: 'Ubuntu', sans-serif;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+.navbar.sticky{
+  padding: 15px 0;
+  background:#003366;
+}
+.navbar .max-width{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .logo a{
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+}
+.navbar .logo a span{
+  color: #003366;
+}
+.navbar.sticky .logo a span{
+  color: #fff;
+  transition: all 0.3s ease;
+}
+.navbar .menu li{
+  list-style: none;
+  display: inline-block;
+}
+.navbar .menu li a{
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 25px;
+  transition: color 0.3s ease;
+}
+.navbar .menu li a:hover{
+  color: #003366;
+}
+.navbar.sticky .menu li a:hover{
+  color: orange;
+  transition: all 0.3s ease;
+}
+
+.banner-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.banner-image img {
+  width: 768px;
+  height: 97px;
+  object-fit: cover;
+}
+
+.home {
+  display: flex;
+  position: relative;
+  height: 100%;
+  color: #fff;
+  min-height: 500px;
+  font-family: 'Ubuntu', sans-serif;
+  background: rgba(143, 143, 143, 0.4);
+  overflow: hidden; /* Prevents overflow */
+}
+
+.logos-image {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logos-image img {
+  width: 568px;
+  height: auto;
+  object-fit: contain; /* Ensure the entire image is visible */
+}
+
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../pics/sgbit topview.jpg") no-repeat center;
+  background-size: cover;
+  z-index: -1;
+}
+
+.home .home-content{
+  text-align: center;
+}
+
+.home .home-content .text-1{
+  margin-top: 30px;
+  font-size: 27px;
+  color: #333;
+  margin-bottom: 10px;
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+.home .home-content .text-2{
+  font-size: 75px;
+  font-weight: 600;
+  margin-left: -3px;
+  margin-bottom: 10px;
+  font-family: "Sofadi One", system-ui;
+}
+.home .home-content .text-3{
+  font-size: 40px;
+  margin: 5px 0;
+  margin-bottom: 10px;
+}
+.home .home-content .text-3 span{
+  color: orange;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.home .home-content a{
+  display: inline-block;
+  background-color: orange;
+  color: #fff;
+  font-size: 15px;
+  padding: 9px 27px;
+  margin-top: 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+.home .home-content a:hover{
+  color: #003366;
+  background: rgb(252, 200, 103);
+}
+
+
+
+/* general content */
+section{
+  padding: 100px 0;;
+}
+section .title{
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+.about, .events, .execoms{
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+/* about section */
+.about {
+  background: url('../pics/bg02.png') no-repeat center center fixed;
+  background-size: cover;
+  padding: 100px 0;
+  color: #fff;
+}
+.about .about-content{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between
+}
+.about .about-content .left{
+  width: 45%;
+}
+.about .about-content .left img{
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+}
+.about .about-content .right{
+  width: 55%;;
+}
+.about .about-content .right .text{
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+
+
+/* Events sectiom */
+.events{
+  color: #fff;
+  background: #111;
+}
+.events .title::after{
+  background: #111;
+}
+.events .card {
+  width: 100%;
+  display: flex;
+  background-color: #222;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.events .eve-content .card{
+  width: calc(33% - 20px);
+  background-color: #222;
+  text-align: center  ;
+  border-radius: 6px;
+  padding: 20px 25px;
+  cursor: pointer;
+}
+.events .text{
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: inline-block;
+  border-bottom: 2px solid orange;
+  padding-bottom: 2px;
+}
+.events .eve-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.events .card {
+  width: 100%;
+  display: flex;
+  background-color: #222;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.events .box {
+  width: 60%; /* Text container takes 60% width */
+  text-align: left;
+}
+
+.events .event-img {
+  width: 35%; /* Image container takes 35% width */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.events .event-img img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+
+/* Execoms Section */
+.execoms {
+  background: #f5f5f5;
+  padding: 100px 0;
+  color: #333;
+}
+
+.execoms .title {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.execoms .execoms-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.execoms .member {
+  width: 48%; /* Adjust width as per layout */
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.execoms .member-img {
+  width: 35%; /* Image takes 35% of the width */
+}
+
+.execoms .member-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%; /* Makes the image round */
+  object-fit: cover;
+}
+
+.execoms .member-info {
+  width: 60%; /* Info takes 60% of the width */
+  margin-left: 20px;
+}
+
+.execoms .member-info h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+.execoms .member-info p {
+  font-size: 16px;
+  color: #555;
+}
+.learn-more-btn {
+  display: inline-block;
+  background-color: #003366;
+  color: #fff;
+  font-size: 15px;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border-radius: 6px;
+  border: 2px solid #003366;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.learn-more-btn:hover {
+  background-color: transparent;
+  color: #003366;
+  border-color: #003366;
+}
+.about .learn-more-btn:hover{
+  background-color: orange;
+  color: #fff;
+}
+
+/* Contact Section */
+.contact {
+  background: #f5f5f5;
+  padding: 100px 0;
+}
+
+.contact .title {
+  color: #003366;
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.contact-content .column {
+  width: 48%;
+}
+
+.contact-content .left .text,
+.contact-content .right .text {
+  font-size: 24px;
+  font-weight: 600;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+.contact-content .left .info .box {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.contact-content .left .info .box .icon {
+  min-width: 50px;
+  height: 50px;
+  background: url(../pics/images.png) no-repeat center center fixed;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+.contact-content .left .info .box .text h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+.contact-content .left .info .box .text p {
+  font-size: 16px;
+  color: #666;
+}
+
+.contact-content .right form .fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-content .right form .fields .field {
+  width: 48%;
+}
+
+.contact-content .right form .field {
+  margin-bottom: 15px;
+}
+
+.contact-content .right form .field input,
+.contact-content .right form .field textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-content .right form .field textarea {
+  resize: none;
+}
+
+.contact-content .right form .button button {
+  background: #003366;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-content .right form .button button:hover {
+  background: orange;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 2rem 0;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0 50px; /* Added padding to the sides */
+}
+
+footer h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer .social-media img {
+  margin-top: 10px;
+  width: 30px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+footer .social-media img:hover {
+  transform: scale(1.1);
+}
+
+footer .quick-links ul li {
+  margin-bottom: 10px;
+}
+
+/* Media query for mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .execoms .member {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .execoms .member-img,
+  .execoms .member-info {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+
+  .execoms .member-img img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  footer .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  footer .social-media {
+    margin: 20px 0;
+  }
+}

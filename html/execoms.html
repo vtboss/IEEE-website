@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execoms - IEEE SGBIT</title>
+    <link rel="icon" type="image/png" href="../pics/sgbit_ieee_black-removebg-preview.png"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        .max-width {
+            max-width: 1300px;
+            padding: 0 80px;
+            margin: auto;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 30px 0;
+            font-family: 'Ubuntu', sans-serif;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .navbar.sticky {
+            padding: 15px 0;
+            background: #003366;
+        }
+
+        .navbar .max-width {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .logo a {
+            color: #fff;
+            font-size: 35px;
+            font-weight: 600;
+        }
+
+        .navbar .logo a span {
+            color: #fff;
+        }
+
+        .navbar.sticky .logo a span {
+            color: orange;
+        }
+
+        .navbar .menu li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        .navbar .menu li a {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 25px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .menu li a:hover {  
+            color: orange;
+        }
+
+        /* Hero Section Styling */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url("../pics/sgbit\ topview.jpg");
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-family: 'Ubuntu', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Main Content Styling */
+        main {
+            background: #f5f5f5;
+        }
+
+        .section {
+            padding: 50px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #003366;
+            margin-bottom: 50px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 80px;
+        }
+
+
+        .dignitaries-container, .execom-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        #execom {
+            background: linear-gradient(rgba(245,245,245,0.5), rgba(0, 0, 0, 0.5)), 
+                        url("../pics/90.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .dignitary-card, .execom-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .dignitary-card:hover, .execom-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dignitary-image, .execom-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .dignitary-info, .execom-info {
+            padding: 30px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .dignitary-name, .execom-name {
+            color: #003366;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .dignitary-title, .execom-position {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        .previous-execoms {
+            background: #f5f5f5;
+            padding: 50px 0;
+        }
+
+        .previous-execoms-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #003366;
+            margin-bottom: 30px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .dropdown-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .dropdown-header {
+            background-color: #003366;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Ubuntu', sans-serif;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .dropdown-header:hover {
+            background-color: #005599;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-header i {
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .dropdown-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: 
+                max-height 0.4s ease-out, 
+                opacity 0.4s ease-out, 
+                transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 0 0 5px 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-content.active {
+            max-height: 1000px; /* Adjust based on content */
+            opacity: 1;
+            transform: scaleY(1);
+            padding: 20px;
+        }
+
+        .previous-execom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .dropdown-content.active .previous-execom-grid {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .previous-execom-card {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: 
+                transform 0.3s ease, 
+                box-shadow 0.3s ease;
+        }
+
+        .previous-execom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #003366;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: orange;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 0 50px;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        footer h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: orange;
+        }
+
+        footer .social-media img {
+            margin-top: 10px;
+            width: 30px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        footer .social-media img:hover {
+            transform: scale(1.1);
+        }
+
+        footer .quick-links ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .max-width, .container {
+                padding: 0 20px;
+            }
+
+            .dignitaries-container, .execom-container {
+                grid-template-columns: 1fr;
+            }
+
+            footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            footer .container > div {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="#">IEEE <span>SGBIT</span></a></div>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="execoms.html">Execoms</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="max-width">
+            <h1>IEEE SGBIT EXECOMS</h1>
+            <p>Meet the Leaders Driving Our Vision Forward</p>
+        </div>
+    </section>
+
+    <main>
+        <section id="dignitaries" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Dignitaries</h2>
+                <div class="dignitaries-container">
+                    <div class="dignitary-card">
+                        <img src="../pics/ayush.jpg" alt="Dr. F V Manvi" class="dignitary-image">
+                        <div class="dignitary-info">
+                            <div class="dignitary-name">Dr. F V Manvi</div>
+                            <div class="dignitary-title">Chairman</div>
+                        </div>
+                    </div>
+                    <div class="dignitary-card">
+                        <img src="/api/placeholder/400/400" alt="Dr. B R Patagundi" class="dignitary-image">
+                        <div class="dignitary-info">
+                            <div class="dignitary-name">Dr. B R Patagundi</div>
+                            <div class="dignitary-title">Principal</div>
+                        </div>
+                    </div>
+                    <div class="dignitary-card">
+                        <img src="/api/placeholder/400/400" alt="Dr. J M Rudagi" class="dignitary-image">
+                        <div class="dignitary-info">
+                            <div class="dignitary-name">Dr. J M Rudagi</div>
+                            <div class="dignitary-title">IEEE Branch Counsellor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="execom" class="section">
+            <div class="container">
+                <h2 class="section-title">EXECOM 2024</h2>
+                <div class="execom-container">
+                    <div class="execom-card">
+                        <img src="../pics/ayush.jpg" alt="Ayush Tammannavar" class="execom-image">
+                        <div class="execom-info">
+                            <div class="execom-name">Ayush Tammannavar</div>
+                            <div class="execom-position">Chair</div>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/lameayush" target="_blank">Instagram</a>
+                                <a href="https://www.linkedin.com/in/ayush-k-tammannavar-886700300/" target="_blank">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="execom-card">
+                        <img src="/api/placeholder/400/400" alt="Shrilakshmi Kakati" class="execom-image">
+                        <div class="execom-info">
+                            <div class="execom-name">Shrilakshmi Kakati</div>
+                            <div class="execom-position">Co-Chair</div>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/ishrilakshmik" target="_blank">Instagram</a>
+                                <a href="https://www.linkedin.com/in/shrilakshmi-kakati-5435b8244/" target="_blank">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="execom-card">
+                        <img src="/api/placeholder/400/400" alt="Team Member" class="execom-image">
+                        <div class="execom-info">
+                            <div class="execom-name">Shreyas Katti</div>
+                            <div class="execom-position">Secretary</div>
+                            <div class="social-links">
+                                <a href="#" target="_blank">Instagram</a>
+                                <a href="#" target="_blank">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="execom-card">
+                        <img src="/api/placeholder/400/400" alt="Team Member" class="execom-image">
+                        <div class="execom-info">
+                            <div class="execom-name">Team Member</div>
+                            <div class="execom-position">Technical Activities</div>
+                            <div class="social-links">
+                                <a href="#" target="_blank">Instagram</a>
+                                <a href="#" target="_blank">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="execom-card">
+                        <img src="/api/placeholder/400/400" alt="Team Member" class="execom-image">
+                        <div class="execom-info">
+                            <div class="execom-name">Team Member</div>
+                            <div class="execom-position">Technical Activities</div>
+                            <div class="social-links">
+                                <a href="#" target="_blank">Instagram</a>
+                                <a href="#" target="_blank">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="previous-execoms">
+            <div class="container">
+                <h2 class="previous-execoms-title">Previous Execoms</h2>
+                <div class="dropdown-container">
+                    <div class="dropdown-header" onclick="toggleDropdown(this)">
+                        2023 Execom <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="previous-execom-grid">
+                            <div class="previous-execom-card">
+                                <div class="previous-execom-name">Name 1</div>
+                                <div class="previous-execom-position">Chair</div>
+                            </div>
+                            <div class="previous-execom-card">
+                                <div class="previous-execom-name">Name 2</div>
+                                <div class="previous-execom-position">Co-Chair</div>
+                            </div>
+           
+                        </div>
+                    </div>
+    
+                    <div class="dropdown-header" onclick="toggleDropdown(this)">
+                        2022 Execom <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="previous-execom-grid">
+                            <div class="previous-execom-card">
+                                <div class="previous-execom-name">Name 1</div>
+                                <div class="previous-execom-position">Chair</div>
+                            </div>
+                            <div class="previous-execom-card">
+                                <div class="previous-execom-name">Name 2</div>
+                                <div class="previous-execom-position">Co-Chair</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+    
+                    <div class="dropdown-header" onclick="toggleDropdown(this)">
+                        2021 Execom <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="previous-execom-grid">
+                            <div class="previous-execom-card">
+                                <div class="previous-execom-name">Name 1</div>
+                                <div class="previous-execom-position">Chair</div>
+                            </div>
+                            <div class="previous-execom-card">
+                                <div class="previous-execom-name">Name 2</div>
+                                <div class="previous-execom-position">Co-Chair</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: contactieeesgbit@gmail.com</p>
+                <p>Phone: +91 6366611853</p>
+            </div>
+
+            <div class="social-media">
+                <h3>Follow Us</h3>
+                <a href="https://facebook.com/ieee" target="_blank">
+                    <img src="../pics/facebook.svg" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/ieee_sgbitofficial/" target="_blank">
+                    <img src="../pics/instagram.svg" alt="Instagram">
+                </a>
+                <a href="https://www.linkedin.com/in/ieee-student-branch-sgbit-871802312/" target="_blank">
+                    <img src="../pics/linkedin.svg" alt="LinkedIn">
+                </a>
+            </div>
+
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="https://www.ieee.org/">Membership</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                if(this.scrollY > 20){
+                    $('.navbar').addClass("sticky");
+                } else {
+                    $('.navbar').removeClass("sticky");
+                }
+            });
+        });
+        function toggleDropdown(header) {
+            const allHeaders = document.querySelectorAll('.dropdown-header');
+            const allContents = document.querySelectorAll('.dropdown-content');
+            
+            allHeaders.forEach((h, index) => {
+                if (h !== header) {
+                    h.classList.remove('active');
+                    allContents[index].classList.remove('active');
+                }
+            });
+            header.classList.toggle('active');
+            const dropdownContent = header.nextElementSibling;
+            dropdownContent.classList.toggle('active');
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE SGBIT - Events</title>
+    <link rel="icon" type="image/png"  href="../pics/sgbit_ieee_black-removebg-preview.png"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sofadi+One&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        .max-width {
+            max-width: 1300px;
+            padding: 0 80px;
+            margin: auto;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 30px 0;
+            font-family: 'Ubuntu', sans-serif;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .navbar.sticky {
+            padding: 15px 0;
+            background: #003366;
+        }
+
+        .navbar .max-width {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .logo a {
+            color: #fff;
+            font-size: 35px;
+            font-weight: 600;
+        }
+
+        .navbar .logo a span {
+            color: #fff;
+        }
+
+        .navbar.sticky .logo a span {
+            color: orange;
+        }
+
+        .navbar .menu li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        .navbar .menu li a {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 25px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .menu li a:hover {  
+            color: orange;
+        }
+
+
+        /* Events Section Styling */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url("../pics/sgbit\ topview.jpg");
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-family: 'Ubuntu', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .events-section {
+            padding: 50px 0;
+            background: #f5f5f5;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #003366;
+            margin-bottom: 50px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-image {
+            width: 40%;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-content {
+            width: 60%;
+            padding: 30px;
+        }
+
+        .event-title {
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .event-date {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .event-description {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            background: #003366;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .learn-more-btn:hover {
+            background: orange;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 0 50px;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        footer h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: orange;
+        }
+
+        footer .social-media img {
+            margin-top: 10px;
+            width: 30px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        footer .social-media img:hover {
+            transform: scale(1.1);
+        }
+
+        footer .quick-links ul li {
+            margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .max-width {
+                padding: 0 20px;
+            }
+
+            .event-card {
+                flex-direction: column;
+            }
+
+            .event-image, .event-content {
+                width: 100%;
+            }
+
+            footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            footer .container > div {
+                margin-bottom: 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="#">IEEE <span>SGBIT</span></a></div>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="execoms.html">Execoms</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="max-width">
+            <h1>IEEE SGBIT EVENTS</h1>
+            <p>Discover, Learn, and Grow with Us</p>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section">
+        <div class="max-width">
+            <h2 class="section-title">Recent Events</h2>
+            
+            <!-- Event Card 1 -->
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="../pics/ev1-01.jpg" alt="IGNITION">
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">IGNITION</h3>
+                    <p class="event-date">February 19, 2024</p>
+                    <p class="event-description">Inauguration of IEEE Events 2024. This event aims to inspire students, foster collaboration, and promote professional development within the engineering community at S.G. Balekundri Institute of Technology.</p>
+                    <a href="#" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Event Card 2 -->
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="../pics/WiE.heic" alt="NKSS WiE Congress">
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">NKSS WiE Congress</h3>
+                    <p class="event-date">March 22, 2024</p>
+                    <p class="event-description">The NKSS WiE Congress empowers women in engineering through networking, workshops, and inspiring talks, promoting professional development and recognizing outstanding contributions in STEM fields.</p>
+                    <a href="#" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Event Card 3 -->
+            <div class="event-card">
+                <div class="event-image">
+                    <img src="../pics/HNH.heic" alt="HACK-N-HUNT">
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title">HACK-N-HUNT</h3>
+                    <p class="event-date">April 27, 2024</p>
+                    <p class="event-description">HACK-N-HUNT is a competition that challenges participants to discover vulnerabilities, promoting collaboration, technical skills, and real-world problem-solving in a simulated environment.</p>
+                    <a href="#" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Email: contactieeesgbit@gmail.com</p>
+                <p>Phone: +91 6366611853</p>
+            </div>
+
+            <div class="social-media">
+                <h3>Follow Us</h3>
+                <a href="https://facebook.com/ieee" target="_blank">
+                    <img src="../pics/facebook.svg" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/ieee_sgbitofficial/" target="_blank">
+                    <img src="../pics/instagram.svg" alt="Instagram">
+                </a>
+                <a href="https://www.linkedin.com/in/ieee-student-branch-sgbit-871802312/" target="_blank">
+                    <img src="../pics/linkedin.svg" alt="LinkedIn">
+                </a>
+            </div>
+
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="https://www.ieee.org/">Membership</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                if(this.scrollY > 20){
+                    $('.navbar').addClass("sticky");
+                } else {
+                    $('.navbar').removeClass("sticky");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IEEE Student Branch - SGBIT</title>
+    <link rel="icon" type="image/png"  href="../pics/sgbit_ieee_black-removebg-preview.png"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sofadi+One&display=swap');
@@ -62,6 +63,7 @@
         }
 
         .navbar .menu li a {
+            position: relative;
             color: #fff;
             font-size: 18px;
             font-weight: 500;
@@ -70,13 +72,26 @@
         }
 
         .navbar .menu li a:hover {
-            color: #003366;
+            color: orange;
         }
 
         .navbar.sticky .menu li a:hover {
             color: orange;
         }
+        .navbar .menu li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: orange;
+            transition: width 0.3s ease;
+        }
 
+        .navbar .menu li a:hover::after {
+            width: 100%;
+        }
         /* Base Styles */
         body {
             font-family: 'Arial', sans-serif;
@@ -500,13 +515,13 @@
             <div class="social-media">
                 <h3>Follow Us</h3>
                 <a href="https://facebook.com/ieee" target="_blank">
-                    <img src="/api/placeholder/30/30" alt="Facebook">
+                    <img src="../pics/facebook.svg" alt="Facebook">
                 </a>
                 <a href="https://www.instagram.com/ieee_sgbitofficial/" target="_blank">
-                    <img src="/api/placeholder/30/30" alt="Instagram">
+                    <img src="../pics/instagram.svg" alt="Instagram">
                 </a>
                 <a href="https://www.linkedin.com/in/ieee-student-branch-sgbit-871802312/" target="_blank">
-                    <img src="/api/placeholder/30/30" alt="LinkedIn">
+                    <img src="../pics/linkedin.svg" alt="LinkedIn">
                 </a>
             </div>
 

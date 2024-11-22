@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sofadi+One&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 *{
   margin: 0;
   padding: 0;
@@ -49,6 +50,7 @@
   display: inline-block;
 }
 .navbar .menu li a{
+  position: relative;
   color: #fff;
   font-size: 18px;
   font-weight: 500;
@@ -61,6 +63,26 @@
 .navbar.sticky .menu li a:hover{
   color: orange;
   transition: all 0.3s ease;
+}
+.navbar .menu li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: orange;
+  transition: width 0.3s ease;
+}
+
+.navbar .menu li a:hover::after {
+  width: 100%;
+}
+.menu-btn {
+  color: #fff;
+  font-size: 23px;
+  cursor: pointer;
+  display: none;
 }
 
 .banner-image {
@@ -159,6 +181,16 @@
   background: rgb(252, 200, 103);
 }
 
+.about, .events, .execoms, .contact {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.about.fade-in, .events.fade-in, .execoms.fade-in, .contact.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
 /* general content */
@@ -338,6 +370,44 @@ section .title{
   font-size: 16px;
   color: #555;
 }
+
+.learn-more-btn, 
+.home .home-content a {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.learn-more-btn::before,
+.home .home-content a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: rgba(255,255,255,0.2);
+  transition: height 0.3s ease;
+  z-index: -1;
+}
+
+.learn-more-btn:hover::before,
+.home .home-content a:hover::before {
+  height: 100%;
+}
+
+/* Soft shadow on hover for cards */
+.events .card, 
+.execoms .member {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.events .card:hover, 
+.execoms .member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
 .learn-more-btn {
   display: inline-block;
   background-color: #003366;
@@ -403,7 +473,7 @@ section .title{
 .contact-content .left .info .box .icon {
   min-width: 50px;
   height: 50px;
-  background: url(../pics/images.png) no-repeat center center fixed;;
+  background: url(../pics/icon.png) no-repeat center center fixed;;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -542,5 +612,131 @@ footer .quick-links ul li {
 
   footer .social-media {
     margin: 20px 0;
+  }
+}
+
+/* Custom Keyframe Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Navigation */
+.menu-btn {
+  color: #fff;
+  font-size: 23px;
+  cursor: pointer;
+  display: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 947px) {
+  .max-width {
+    padding: 0 50px;
+  }
+
+  .menu-btn {
+    display: block;
+    z-index: 999;
+    position: absolute;
+    right: 30px;
+    top: 20px;
+  }
+
+  .navbar .menu {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    left: -100%;
+    top: 0;
+    background: #003366;
+    text-align: center;
+    padding-top: 80px;
+    transition: all 0.3s ease;
+    z-index: 998;
+  }
+
+  .navbar .menu.active {
+    left: 0;
+  }
+
+  .navbar .menu li {
+    display: block;
+    margin: 20px 0;
+  }
+
+  .navbar .menu li a {
+    display: inline-block;
+    margin: 10px 0;
+    font-size: 25px;
+  }
+
+  /* Adjust section layouts */
+  .about .about-content .column,
+  .contact .contact-content .column {
+    width: 100%;
+  }
+
+  .about .about-content .left {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 60px;
+  }
+
+  .about .about-content .right {
+    flex: 100%;
+  }
+
+  .events .eve-content .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .execoms .member {
+    width: 100%;
+  }
+}
+
+/* Responsive Image Adjustments */
+.banner-image img,
+.logos-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Additional Responsive Tweaks */
+@media (max-width: 690px) {
+  .home .home-content .text-2 {
+    font-size: 50px;
+  }
+
+  .home .home-content .text-3 {
+    font-size: 32px;
   }
 }

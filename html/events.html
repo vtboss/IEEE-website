@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE SGBIT - Events</title>
-    <link rel="icon" type="image/png"  href="../pics/sgbit_ieee_black-removebg-preview.png"/>
+    <title>IEEE SGBIT - Events Timeline</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;600;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sofadi+One&display=swap');
-
         * {
             margin: 0;
             padding: 0;
@@ -16,6 +14,8 @@
             text-decoration: none;
         }
 
+        /* Your existing navbar, hero, and footer styles remain unchanged */
+        /* ... (keeping all your original styles) ... */
         .max-width {
             max-width: 1300px;
             padding: 0 80px;
@@ -116,10 +116,11 @@
         .hero p {
             font-size: 1.2rem;
         }
-
-        .events-section {
-            padding: 50px 0;
-            background: #f5f5f5;
+        .timeline-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(0, 51, 102, 0.7)), url("../pics/evens.png");
+            padding: 80px 0;
+            min-height: 100vh;
+            position: relative;
         }
 
         .section-title {
@@ -130,51 +131,114 @@
             font-family: 'Ubuntu', sans-serif;
         }
 
-        .event-card {
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            padding: 40px 0;
+        }
+
+        /* Central line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: #003366;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            margin-bottom: 150px;
+            width: 100%;
+            position: relative;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-content {
+            width: calc(50% - 50px);
+            padding: 25px;
             background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
             transition: transform 0.3s ease;
         }
 
-        .event-card:hover {
+        .timeline-content:hover {
             transform: translateY(-5px);
         }
 
-        .event-image {
-            width: 40%;
-            overflow: hidden;
+        /* Position items on alternate sides */
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 30px;
         }
 
-        .event-image img {
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 30px;
+        }
+
+        /* Timeline dots */
+        .timeline-dot {
+            width: 30px;
+            height: 30px;
+            background: orange;
+            border: 4px solid #003366;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        /* Content styling */
+        .timeline-date {
+            background: #003366;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            position: absolute;
+            top: -40px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            left: 0;
+        }
+
+        .timeline-content img {
             width: 100%;
-            height: 100%;
+            height: 300px;
             object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
-        .event-content {
-            width: 60%;
-            padding: 30px;
-        }
-
-        .event-title {
+        .timeline-content h3 {
             color: #003366;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             font-family: 'Ubuntu', sans-serif;
         }
 
-        .event-date {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .event-description {
+        .timeline-content p {
             color: #444;
             line-height: 1.6;
             margin-bottom: 20px;
@@ -185,16 +249,16 @@
             display: inline-block;
             background: #003366;
             color: white;
-            padding: 10px 25px;
+            padding: 10px 20px;
             border-radius: 5px;
             transition: all 0.3s ease;
             font-family: 'Ubuntu', sans-serif;
+            text-decoration: none;
         }
 
         .learn-more-btn:hover {
             background: orange;
         }
-
         /* Footer Styling */
         footer {
             background-color: #333;
@@ -250,19 +314,11 @@
             margin-bottom: 10px;
         }
 
+        /* Mobile Responsive */
         @media screen and (max-width: 768px) {
             .max-width {
                 padding: 0 20px;
             }
-
-            .event-card {
-                flex-direction: column;
-            }
-
-            .event-image, .event-content {
-                width: 100%;
-            }
-
             footer .container {
                 flex-direction: column;
                 text-align: center;
@@ -279,11 +335,42 @@
             .hero p {
                 font-size: 1.2rem;
             }
+            .timeline-container::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+
+            .timeline-dot {
+                left: 30px;
+                transform: none;
+            }
+
+            .timeline-date {
+                position: relative;
+                top: 0;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(even) .timeline-date {
+                left: 0;
+                right: auto;
+            }
+
+            .timeline-content img {
+                height: 200px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
+        <!-- Navbar -->
     <nav class="navbar">
         <div class="max-width">
             <div class="logo"><a href="#">IEEE <span>SGBIT</span></a></div>
@@ -305,52 +392,12 @@
         </div>
     </section>
 
-    <!-- Events Section -->
-    <section class="events-section">
-        <div class="max-width">
-            <h2 class="section-title">Recent Events</h2>
-            
-            <!-- Event Card 1 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="../pics/ev1-01.jpg" alt="IGNITION">
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title">IGNITION</h3>
-                    <p class="event-date">February 19, 2024</p>
-                    <p class="event-description">Inauguration of IEEE Events 2024. This event aims to inspire students, foster collaboration, and promote professional development within the engineering community at S.G. Balekundri Institute of Technology.</p>
-                    <a href="#" class="learn-more-btn">Learn More</a>
-                </div>
-            </div>
-
-            <!-- Event Card 2 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="../pics/WiE.heic" alt="NKSS WiE Congress">
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title">NKSS WiE Congress</h3>
-                    <p class="event-date">March 22, 2024</p>
-                    <p class="event-description">The NKSS WiE Congress empowers women in engineering through networking, workshops, and inspiring talks, promoting professional development and recognizing outstanding contributions in STEM fields.</p>
-                    <a href="#" class="learn-more-btn">Learn More</a>
-                </div>
-            </div>
-
-            <!-- Event Card 3 -->
-            <div class="event-card">
-                <div class="event-image">
-                    <img src="../pics/HNH.heic" alt="HACK-N-HUNT">
-                </div>
-                <div class="event-content">
-                    <h3 class="event-title">HACK-N-HUNT</h3>
-                    <p class="event-date">April 27, 2024</p>
-                    <p class="event-description">HACK-N-HUNT is a competition that challenges participants to discover vulnerabilities, promoting collaboration, technical skills, and real-world problem-solving in a simulated environment.</p>
-                    <a href="#" class="learn-more-btn">Learn More</a>
-                </div>
-            </div>
+    <section class="timeline-section">
+        <h2 class="section-title">Our Journey Through Events</h2>
+        <div class="timeline-container" id="timeline-container">
+            <!-- Events will be added here by JavaScript -->
         </div>
     </section>
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -384,9 +431,10 @@
             </div>
         </div>
     </footer>
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
+                // Your existing navbar script
         $(document).ready(function(){
             $(window).scroll(function(){
                 if(this.scrollY > 20){
@@ -395,6 +443,67 @@
                     $('.navbar').removeClass("sticky");
                 }
             });
+        });
+        const timelineData = [
+            {
+                date: "April 27, 2024",
+                title: "HACK-N-HUNT",
+                description: "HACK-N-HUNT is a competition that challenges participants to discover vulnerabilities, promoting collaboration, technical skills, and real-world problem-solving in a simulated environment.",
+                image: "../pics/HNH.heic"
+            },
+            {
+                date: "March 22, 2024",
+                title: "NKSS WiE Congress",
+                description: "The NKSS WiE Congress empowers women in engineering through networking, workshops, and inspiring talks, promoting professional development and recognizing outstanding contributions in STEM fields.",
+                image: "../pics/WiE.heic"
+            },
+            {
+                date: "February 19, 2024",
+                title: "IGNITION",
+                description: "Inauguration of IEEE Events 2024. This event aims to inspire students, foster collaboration, and promote professional development within the engineering community at S.G. Balekundri Institute of Technology.",
+                image: "../pics/ev1-01.jpg"
+            }
+        ];
+
+        function createTimelineItems() {
+            const container = document.getElementById('timeline-container');
+            
+            timelineData.forEach(event => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                
+                timelineItem.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">${event.date}</span>
+                        <img src="${event.image}" alt="${event.title}">
+                        <h3>${event.title}</h3>
+                        <p>${event.description}</p>
+                        <a href="#" class="learn-more-btn">Learn More</a>
+                    </div>
+                `;
+                
+                container.appendChild(timelineItem);
+            });
+        }
+
+        function observeTimelineItems() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createTimelineItems();
+            observeTimelineItems();
         });
     </script>
 </body>

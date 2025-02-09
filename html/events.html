@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE SGBIT - Events Timeline</title>
+    <title>IEEE Student Branch - SGBIT</title>
+    <link rel="icon" type="image/png"  href="../pics/sgbit_ieee_black-removebg-preview.png"/>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sofadi+One&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             text-decoration: none;
         }
-
-        /* Your existing navbar, hero, and footer styles remain unchanged */
-        /* ... (keeping all your original styles) ... */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
         .max-width {
             max-width: 1300px;
             padding: 0 80px;
@@ -78,6 +82,7 @@
         .navbar.sticky .menu li a:hover {
             color: orange;
         }
+
         .navbar .menu li a::after {
             content: '';
             position: absolute;
@@ -92,12 +97,40 @@
         .navbar .menu li a:hover::after {
             width: 100%;
         }
+
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .menu-btn .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
         }
-        /* Events Section Styling */
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url("../pics/sgbit\ topview.jpg");
             background-size: cover;
@@ -106,6 +139,13 @@
             text-align: center;
             padding: 150px 20px;
             position: relative;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
@@ -116,11 +156,15 @@
         .hero p {
             font-size: 1.2rem;
         }
+
+        /* Events Styles */
         .timeline-section {
             background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(0, 51, 102, 0.7)), url("../pics/evens.png");
             padding: 80px 0;
             min-height: 100vh;
             position: relative;
+            width: 100%;
+            overflow: hidden;
         }
 
         .section-title {
@@ -129,8 +173,113 @@
             color: #003366;
             margin-bottom: 50px;
             font-family: 'Ubuntu', sans-serif;
+            position: relative;
+        }
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 4px;
+            background: #003366;
+
+        }
+        .event-cards {
+            padding: 80px 0;
+            background: #f8f9fa;
         }
 
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .upcoming::before { background: #003366; }
+        .ongoing::before { background: orange; }
+        .past::before { background: #28a745; }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            animation: bounceIn 1s;
+        }
+
+        .card h3 {
+            color: #003366;
+            font-family: 'Ubuntu', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .count {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: orange;
+            margin-bottom: 20px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .card-details {
+            text-align: left;
+        }
+
+        .card-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-details li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+            font-family: 'Poppins', sans-serif;
+        }
+        .event-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .event-link:hover {
+            color: #003366;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
         .timeline-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -144,8 +293,8 @@
             position: absolute;
             width: 4px;
             background: #003366;
-            top: 0;
-            bottom: 0;
+            top: -50px;
+            bottom: -80px;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 2px;
@@ -237,6 +386,7 @@
             margin-bottom: 15px;
             font-family: 'Ubuntu', sans-serif;
         }
+        
 
         .timeline-content p {
             color: #444;
@@ -254,6 +404,8 @@
             transition: all 0.3s ease;
             font-family: 'Ubuntu', sans-serif;
             text-decoration: none;
+            position: relative;
+            z-index: 1;
         }
 
         .learn-more-btn:hover {
@@ -318,31 +470,70 @@
         @media screen and (max-width: 768px) {
             .max-width {
                 padding: 0 20px;
+                width: 100%;
             }
-            footer .container {
+
+            .menu-btn {
+                display: block;
+            }
+
+            .menu-btn.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .menu-btn.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-btn.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .navbar .menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: #003366;
+                display: flex;
                 flex-direction: column;
-                text-align: center;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: left 0.3s ease;
             }
 
-            footer .container > div {
-                margin-bottom: 30px;
+            .navbar .menu.active {
+                left: 0;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .navbar .menu li a {
+                font-size: 24px;
+            }
+            
+            .hero-content {
+                width: 100%;
+                padding: 0 20px;
             }
 
-            .hero p {
-                font-size: 1.2rem;
+            .timeline-container {
+                padding: 0 15px;
             }
+
             .timeline-container::before {
                 left: 30px;
+            }
+
+            .timeline-container::before {
+            bottom: -250px;
             }
 
             .timeline-content {
                 width: calc(100% - 60px);
                 margin-left: 60px !important;
                 margin-right: 0 !important;
+                padding: 15px;
             }
 
             .timeline-dot {
@@ -357,29 +548,48 @@
                 margin-bottom: 20px;
             }
 
-            .timeline-item:nth-child(odd) .timeline-date,
-            .timeline-item:nth-child(even) .timeline-date {
-                left: 0;
-                right: auto;
+            .learn-more-btn {
+                display: inline-block;
+                margin-bottom: 10px;
             }
 
-            .timeline-content img {
-                height: 200px;
+            footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            footer .container > div {
+                margin-bottom: 30px;
+            }
+
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 100%;
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body>
-        <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="max-width">
-            <div class="logo"><a href="#">IEEE <span>SGBIT</span></a></div>
+            <div class="logo"><a href="index.html">IEEE <span>SGBIT</span></a></div>
+            <div class="menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
             <ul class="menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="events.html">Events</a></li>
                 <li><a href="execoms.html">Execoms</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -389,6 +599,47 @@
         <div class="max-width">
             <h1>IEEE SGBIT EVENTS</h1>
             <p>Discover, Learn, and Grow with Us</p>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="event-cards">
+        <div class="max-width">
+            <div class="cards-container">
+                <div class="card upcoming">
+                    <div class="card-icon">📅</div>
+                    <h3>Upcoming Events</h3>
+                    <p class="count">2</p>
+                    <div class="card-details">
+                        <ul>
+                            <li>HACK-N-HUNT - Apr 27</li>
+                            <li>WiE Congress - Mar 22</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card ongoing">
+                    <div class="card-icon">🎯</div>
+                    <h3>Ongoing Events</h3>
+                    <p class="count">1</p>
+                    <div class="card-details">
+                        <ul>
+                            <li>Technical Workshop - Feb 20-25</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card past">
+                    <div class="card-icon">✓</div>
+                    <h3>Past Events</h3>
+                    <p class="count">3</p>
+                    <div class="card-details">
+                        <ul>
+                            <li><a href="event-details.html#ignition" class="event-link">IGNITION - Feb 19</a></li>
+                            <li><a href="event-details.html#nkss-wie-congress" class="event-link">Diwali Drive - Oct 30</a></li>
+                            <li><a href="event-details.html#hack-n-hunt" class="event-link">Tech Talk - Jan 15</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -434,15 +685,42 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-                // Your existing navbar script
-        $(document).ready(function(){
-            $(window).scroll(function(){
-                if(this.scrollY > 20){
-                    $('.navbar').addClass("sticky");
-                } else {
-                    $('.navbar').removeClass("sticky");
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.querySelector('.menu-btn');
+            const menu = document.querySelector('.menu');
+            
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('active');
+                menu.classList.toggle('active');
+                document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !menuBtn.contains(e.target) && menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
             });
+
+            // Close menu when clicking links
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        });
+        // Navbar sticky effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('sticky');
+            } else {
+                navbar.classList.remove('sticky');
+            }
         });
         const timelineData = [
             {
@@ -464,7 +742,33 @@
                 image: "../pics/ev1-01.jpg"
             }
         ];
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    }
+                });
+            }, { threshold: 0.1 });
 
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+
+            // Update counts dynamically
+            cards.forEach(card => {
+                const count = card.querySelector('.card-details ul').children.length;
+                card.querySelector('.count').textContent = count;
+            });
+        });
         function createTimelineItems() {
             const container = document.getElementById('timeline-container');
             

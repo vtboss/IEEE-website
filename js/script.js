@@ -1,25 +1,72 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.querySelector('.menu-btn');
+  const menu = document.querySelector('.menu');
+  let touchStart = null;
+
+  const toggleMenu = (show) => {
+    menu.classList.toggle('active', show);
+    menuBtn.classList.toggle('active', show);
+    document.body.style.overflow = show ? 'hidden' : 'auto';
+  };
+
+  menuBtn.addEventListener('click', () => toggleMenu(!menu.classList.contains('active')));
+
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !menuBtn.contains(e.target) && menu.classList.contains('active')) {
+      toggleMenu(false);
+    }
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  document.addEventListener('touchstart', (e) => {
+    touchStart = e.touches[0].clientX;
+  });
+
+  document.addEventListener('touchmove', (e) => {
+    if (!touchStart) return;
+    const touchEnd = e.touches[0].clientX;
+    const diff = touchStart - touchEnd;
+    
+    if (diff > 50 && menu.classList.contains('active')) {
+      toggleMenu(false);
+    }
+    touchStart = null;
+  });
+
+  const hash = window.location.hash;
+  if (hash) {
+    setTimeout(() => {
+      document.querySelector(hash)?.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }, 100);
+  }
+});
+
 $(document).ready(function(){
-  // Smooth Scrolling for Anchor Links
   $('a[href^="#"]').on('click', function(e) {
     e.preventDefault();
-    var target = $(this.getAttribute('href'));
+    const target = $(this.getAttribute('href'));
     if (target.length) {
-      $('html, body').stop().animate({
-        scrollTop: target.offset().top
+      const headerOffset = $('.navbar').outerHeight();
+      const elementPosition = target.offset().top;
+      const offsetPosition = elementPosition - headerOffset;
+      
+      $('html, body').animate({
+        scrollTop: offsetPosition
       }, 1000);
     }
   });
 
-  // Sticky Navbar
   $(window).scroll(function(){
-    if($(this).scrollTop() > 20){
-      $('.navbar').addClass("sticky");
-    } else {
-      $('.navbar').removeClass("sticky");
-    }
+    $('.navbar').toggleClass("sticky", $(this).scrollTop() > 20);
   });
 
-  // Hero Text Animations
+  // Hero text animations
   $('.home .text-1').css({
     'opacity': '0',
     'animation': 'fadeInDown 1s forwards',
@@ -44,30 +91,6 @@ $(document).ready(function(){
     'animation-delay': '1.2s'
   });
 
-  // Responsive Menu Toggle
-  $('.menu-btn').click(function(){
-    $('.navbar .menu').toggleClass("active");
-    $('.menu-btn i').toggleClass("active");
-  });
-
-  // Fade in Sections on Scroll
-  $(window).scroll(function() {
-    const scrollPosition = $(window).scrollTop();
-    const windowHeight = $(window).height();
-
-    $('.about, .events, .execoms, .contact').each(function() {
-      const $section = $(this);
-      const sectionTop = $section.offset().top;
-      const sectionHeight = $section.outerHeight();
-
-      if (scrollPosition >= sectionTop - windowHeight / 2 && 
-          scrollPosition < sectionTop + sectionHeight) {
-        $section.addClass('fade-in');
-      }
-    });
-  });
-
-  // Event Card Hover Effect
   $('.events .card').hover(
     function() {
       $(this).css({

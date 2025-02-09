@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="../pics/sgbit_ieee_black-removebg-preview.png"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sofadi+One&display=swap');
 
         * {
             margin: 0;
@@ -90,6 +91,20 @@
 
         .navbar .menu li a:hover::after {
             width: 100%;
+        }
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .menu-btn .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px;
+            background-color: #fff;
+            transition: all 0.3s ease;
         }
         body {
             font-family: 'Arial', sans-serif;
@@ -175,21 +190,24 @@
             padding: 0 80px;
         }
 
-
         .dignitaries-container, .execom-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 30px;
+            justify-content: center;
+            padding: 20px 0;
         }
         #execom {
-            background: linear-gradient(rgba(245,245,245,0.5), rgba(0, 0, 0, 0.5)), 
-                        url("../pics/90.jpg");
+            background: linear-gradient(rgba(245,245,245,0.5), rgba(0, 0, 0, 0.5)), url("../pics/90.jpg");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
+
         .dignitary-card, .execom-card {
+            flex: 0 1 250px; /* Don't grow, can shrink, base width 250px */
+            max-width: 300px;
             background: white;
             border-radius: 10px;
             overflow: hidden;
@@ -396,9 +414,58 @@
 
         /* Responsive Design */
         @media screen and (max-width: 768px) {
-            .max-width, .container {
+            .navbar .max-width {
                 padding: 0 20px;
             }
+
+            .execom-container {
+                gap: 20px;
+                padding: 10px;
+            }
+            
+            .execom-card {
+                flex: 0 1 100%;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .menu-btn.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .menu-btn.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-btn.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .navbar .menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: #003366;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: left 0.3s ease;
+            }
+
+            .navbar .menu.active {
+                left: 0;
+            }
+
+            .navbar .menu li a {
+                font-size: 24px;
+            }
+
 
             .dignitaries-container, .execom-container {
                 grid-template-columns: 1fr;
@@ -413,22 +480,39 @@
                 margin-bottom: 30px;
             }
         }
+        @media screen and (min-width: 1024px) {
+            .execom-container {
+                grid-template-columns: repeat(4, minmax(250px, 1fr));
+                justify-content: center;
+            }
+            .execom-container::after {
+                content: '';
+                grid-column: span 4;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="max-width">
-            <div class="logo"><a href="#">IEEE <span>SGBIT</span></a></div>
+            <div class="logo"><a href="index.html">IEEE <span>SGBIT</span></a></div>
+            <div class="menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
             <ul class="menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="events.html">Events</a></li>
                 <li><a href="execoms.html">Execoms</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- Hero section -->
     <section class="hero">
         <div class="max-width">
             <h1>IEEE SGBIT EXECOMS</h1>
@@ -442,21 +526,21 @@
                 <h2 class="section-title">Our Dignitaries</h2>
                 <div class="dignitaries-container">
                     <div class="dignitary-card">
-                        <img src="../pics/ayush.jpg" alt="Dr. F V Manvi" class="dignitary-image">
+                        <img src="../pics/execoms/chairman.jpg" alt="Dr. F V Manvi" class="dignitary-image">
                         <div class="dignitary-info">
                             <div class="dignitary-name">Dr. F V Manvi</div>
                             <div class="dignitary-title">Chairman</div>
                         </div>
                     </div>
                     <div class="dignitary-card">
-                        <img src="../pics/ayush.jpg"  alt="Dr. B R Patagundi" class="dignitary-image">
+                        <img src="../pics/execoms/BRP Photo.jpg"  alt="Dr. B R Patagundi" class="dignitary-image">
                         <div class="dignitary-info">
                             <div class="dignitary-name">Dr. B R Patagundi</div>
                             <div class="dignitary-title">Principal</div>
                         </div>
                     </div>
                     <div class="dignitary-card">
-                        <img src="../pics/ayush.jpg"  alt="Dr. J M Rudagi" class="dignitary-image">
+                        <img src="../pics/execoms/jayashree_mam.jpg"  alt="Dr. J M Rudagi" class="dignitary-image">
                         <div class="dignitary-info">
                             <div class="dignitary-name">Dr. J M Rudagi</div>
                             <div class="dignitary-title">IEEE Branch Counsellor</div>
@@ -471,7 +555,7 @@
                 <h2 class="section-title">EXECOM 2024</h2>
                 <div class="execom-container">
                     <div class="execom-card">
-                        <img src="../pics/ayush.jpg" alt="Ayush Tammannavar" class="execom-image">
+                        <img src="../pics/execoms/ayush.jpg" alt="Ayush Tammannavar" class="execom-image">
                         <div class="execom-info">
                             <div class="execom-name">Ayush Tammannavar</div>
                             <div class="execom-position">Chair</div>
@@ -482,7 +566,7 @@
                         </div>
                     </div>
                     <div class="execom-card">
-                        <img src="../pics/ayush.jpg"  alt="Shrilakshmi Kakati" class="execom-image">
+                        <img src="../pics/execoms/shrilaskhmi1.jpg"  alt="Shrilakshmi Kakati" class="execom-image">
                         <div class="execom-info">
                             <div class="execom-name">Shrilakshmi Kakati</div>
                             <div class="execom-position">Co-Chair</div>
@@ -493,7 +577,7 @@
                         </div>
                     </div>
                     <div class="execom-card">
-                        <img src="../pics/ayush.jpg"  alt="Team Member" class="execom-image">
+                        <img src="../pics/execoms/shreyas2.jpg"  alt="Treasurer" class="execom-image">
                         <div class="execom-info">
                             <div class="execom-name">Shreyas Katti</div>
                             <div class="execom-position">Secretary</div>
@@ -504,10 +588,10 @@
                         </div>
                     </div>
                     <div class="execom-card">
-                        <img src="../pics/ayush.jpg"  alt="Team Member" class="execom-image">
+                        <img src="../pics/execoms/ayesha.jpg"  alt="Team Member" class="execom-image">
                         <div class="execom-info">
-                            <div class="execom-name">Team Member</div>
-                            <div class="execom-position">Technical Activities</div>
+                            <div class="execom-name">Bibi Ayesha Shaikhsurab</div>
+                            <div class="execom-position">Treasurer</div>
                             <div class="social-links">
                                 <a href="#" target="_blank">Instagram</a>
                                 <a href="#" target="_blank">LinkedIn</a>
@@ -515,10 +599,10 @@
                         </div>
                     </div>
                     <div class="execom-card">
-                        <img src="../pics/ayush.jpg"  alt="Team Member" class="execom-image">
+                        <img src="../pics/execoms/samarth.jpg"  alt="Team Member" class="execom-image">
                         <div class="execom-info">
-                            <div class="execom-name">Team Member</div>
-                            <div class="execom-position">Technical Activities</div>
+                            <div class="execom-name">Samarth D</div>
+                            <div class="execom-position">Webmaster</div>
                             <div class="social-links">
                                 <a href="#" target="_blank">Instagram</a>
                                 <a href="#" target="_blank">LinkedIn</a>
@@ -526,10 +610,10 @@
                         </div>
                     </div>
                     <div class="execom-card">
-                        <img src="../pics/ayush.jpg"  alt="Team Member" class="execom-image">
+                        <img src="../pics/execoms/tejal.jpg"  alt="Team Member" class="execom-image">
                         <div class="execom-info">
-                            <div class="execom-name">Team Member</div>
-                            <div class="execom-position">Technical Activities</div>
+                            <div class="execom-name">Tejal K</div>
+                            <div class="execom-position">MDC Chair</div>
                             <div class="social-links">
                                 <a href="#" target="_blank">Instagram</a>
                                 <a href="#" target="_blank">LinkedIn</a>
@@ -537,21 +621,10 @@
                         </div>
                     </div>
                     <div class="execom-card">
-                        <img src="../pics/ayush.jpg"  alt="Team Member" class="execom-image">
+                        <img src="../pics/execoms/veeresh.jpg"  alt="Team Member" class="execom-image">
                         <div class="execom-info">
-                            <div class="execom-name">Team Member</div>
-                            <div class="execom-position">Technical Activities</div>
-                            <div class="social-links">
-                                <a href="#" target="_blank">Instagram</a>
-                                <a href="#" target="_blank">LinkedIn</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="execom-card">
-                        <img src="../pics/ayush.jpg"  alt="Team Member" class="execom-image">
-                        <div class="execom-info">
-                            <div class="execom-name">Team Member</div>
-                            <div class="execom-position">Technical Activities</div>
+                            <div class="execom-name">Veeresh P T</div>
+                            <div class="execom-position">MDC Co-Chair</div>
                             <div class="social-links">
                                 <a href="#" target="_blank">Instagram</a>
                                 <a href="#" target="_blank">LinkedIn</a>
@@ -583,33 +656,16 @@
                     </div>
     
                     <div class="dropdown-header" onclick="toggleDropdown(this)">
-                        2022 Execom <i class="fas fa-chevron-down"></i>
+                        2020 Execom <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="dropdown-content">
                         <div class="previous-execom-grid">
                             <div class="previous-execom-card">
-                                <div class="previous-execom-name">Name 1</div>
+                                <div class="previous-execom-name">Manojkumar Patil</div>
                                 <div class="previous-execom-position">Chair</div>
                             </div>
                             <div class="previous-execom-card">
-                                <div class="previous-execom-name">Name 2</div>
-                                <div class="previous-execom-position">Co-Chair</div>
-                            </div>
-                            
-                        </div>
-                    </div>
-    
-                    <div class="dropdown-header" onclick="toggleDropdown(this)">
-                        2021 Execom <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="dropdown-content">
-                        <div class="previous-execom-grid">
-                            <div class="previous-execom-card">
-                                <div class="previous-execom-name">Name 1</div>
-                                <div class="previous-execom-position">Chair</div>
-                            </div>
-                            <div class="previous-execom-card">
-                                <div class="previous-execom-name">Name 2</div>
+                                <div class="previous-execom-name">Abhinav Deshpande</div>
                                 <div class="previous-execom-position">Co-Chair</div>
                             </div>
                             
@@ -656,6 +712,34 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.querySelector('.menu-btn');
+            const menu = document.querySelector('.menu');
+            
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('active');
+                menu.classList.toggle('active');
+                document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !menuBtn.contains(e.target) && menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close menu when clicking links
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        });
         $(document).ready(function(){
             $(window).scroll(function(){
                 if(this.scrollY > 20){

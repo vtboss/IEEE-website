@@ -72,28 +72,42 @@ $(document).ready(function(){
   });
 
   // Hero text animations
-  $('.home .text-1').css({
-    'opacity': '0',
-    'animation': 'fadeInDown 1s forwards',
-    'animation-delay': '0.3s'
-  });
-
-  $('.home .text-2').css({
-    'opacity': '0',
-    'animation': 'fadeInUp 1s forwards',
-    'animation-delay': '0.6s'
-  });
-
-  $('.home .text-3').css({
-    'opacity': '0', 
-    'animation': 'fadeInUp 1s forwards',
-    'animation-delay': '0.9s'
-  });
-
-  $('.home .home-content a').css({
-    'opacity': '0',
-    'animation': 'fadeIn 1s forwards',
-    'animation-delay': '1.2s'
+  $(document).ready(function() {
+    // Hero section text and button animations
+    $('.hero-title').css({
+      'opacity': '0',
+      'transform': 'translateY(50px)',
+      'animation': 'fadeInUp 1s forwards',
+      'animation-delay': '0.3s'
+    });
+  
+    $('.hero-subtitle').css({
+      'opacity': '0',
+      'transform': 'translateY(50px)',
+      'animation': 'fadeInUp 1s forwards',
+      'animation-delay': '0.6s'
+    });
+  
+    $('.hero-cta').css({
+      'opacity': '0',
+      'transform': 'translateY(50px)',
+      'animation': 'fadeInUp 1s forwards',
+      'animation-delay': '0.9s'
+    });
+  
+    $('.banner-logo').css({
+      'opacity': '0',
+      'transform': 'scale(0.8)',
+      'animation': 'fadeIn 1s forwards',
+      'animation-delay': '1.2s'
+    });
+  
+    $('.affiliated-logos').css({
+      'opacity': '0',
+      'transform': 'scale(0.8)',
+      'animation': 'fadeIn 1s forwards',
+      'animation-delay': '1.5s'
+    });
   });
 
   $('.events .card').hover(

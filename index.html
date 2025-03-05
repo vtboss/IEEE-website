@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IEEE SGBIT - Student Branch</title>
-  <link rel="icon" type="image/png"  href="../pics/sgbit_ieee_black-removebg-preview.png"/>
+  <link rel="icon" type="image/png"  href="./pics/sgbit_ieee_black-removebg-preview.png"/>
   <link rel="stylesheet" href="./css/styles.css">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -29,19 +29,44 @@
       </div>
     </nav>
     <!--home section -->
-    <section class="home" id="home">
-      <div class="max-width">
-        <div class="banner-image">
-          <img src="./pics/sgbithead-removebg-preview.png" alt="Banner"/>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">IEEE SGBIT</h1>
+          <p class="hero-subtitle">Student Branch of S.G. Balekundri Institute of Technology</p>
+          <div class="hero-cta">
+            <a href="https://www.ieee.org/" class="btn btn-primary">Join IEEE</a>
+            <a href="#about" class="btn btn-secondary">Learn More</a>
+          </div>
         </div>
-        <div class="home-content">
-          <div class="text-1">WELCOME TO</div>
-          <div class="text-2">IEEE SGBIT</div>
-          <div class="text-3">Student<span>Branch</span></div>
-          <a href="https://www.ieee.org/">Join</a>
-        </div>
-        <div class="logos-image">
-          <img src="./pics/all_logos-removebg-preview.png" alt="logo"/>
+        <div class="slider">
+          <input type="radio" name="slider" id="slide1" checked>
+          <input type="radio" name="slider" id="slide2">
+          <div class="slides">
+            <div class="slide">
+              <img src="./pics/evnt.jpg" alt="All Logos">
+            </div>
+            <div class="slide">
+              <img src="./pics/groupimage2.jpg" alt="Top View">
+            </div>
+            <div class="slide">
+              <img src="./pics/groupimage2.jpg" alt="Top View">
+            </div>
+            <div class="slide">
+              <img src="./pics/groupimage2.jpg" alt="Top View">
+            </div>
+            <div class="slide">
+              <img src="./pics/groupimage2.jpg" alt="Top View">
+            </div>
+          </div>
+          <div class="navigation">
+            <label for="slide1" class="nav-btn"></label>
+            <label for="slide2" class="nav-btn"></label>
+          </div>
+        </div>        
+        <div class="hero-image">
+          <img src="./pics/sgbithead-removebg-preview.png" alt="IEEE SGBIT Banner" class="banner-logo">
+          <img src="./pics/all_logos-removebg-preview.png" alt="Affiliated Logos" class="affiliated-logos">
         </div>
       </div>
     </section>

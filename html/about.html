@@ -599,14 +599,13 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $(window).scroll(function(){
-                if(this.scrollY > 20){
-                    $('.navbar').addClass("sticky");
-                } else {
-                    $('.navbar').removeClass("sticky");
-                }
-            });
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('sticky');
+            } else {
+                navbar.classList.remove('sticky');
+            }
         });
         document.addEventListener('DOMContentLoaded', () => {
             const menuBtn = document.querySelector('.menu-btn');

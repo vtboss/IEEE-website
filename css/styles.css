@@ -168,7 +168,7 @@
 .affiliated-logos {
   position: absolute;
   bottom: -20%;
-  left: -10%; /* Adjusted from 50% to move more to the left */
+  left: -7%; /* Adjusted from 50% to move more to the left */
   transform: translateX(-50%);
   max-width: 100%; /* Increased from 90% */
   max-height: 300px;
@@ -219,7 +219,7 @@
 .slider {
   position: absolute;
   top: 120px;
-  right: 8%;
+  right: 7%;
   max-width: 600px;
   height: 350px;
   overflow: hidden;
@@ -440,7 +440,7 @@ section .title{
 
 .execoms .member-img img {
   width: 100%;
-  height: auto;
+  height: 50vh;
   border-radius: 50%; /* Makes the image round */
   object-fit: cover;
 }
@@ -784,7 +784,9 @@ footer .quick-links ul li {
     backdrop-filter: blur(10px);
     z-index: 1000;
   }
-
+  .navbar .menu li a:hover {
+    color: orange;
+  }
   .navbar .menu.active {
     left: 0;
   }
@@ -864,7 +866,7 @@ footer .quick-links ul li {
   }
   
   .banner-logo {
-display: none;
+    display: none;
   }
   
   .hero-text {
@@ -874,7 +876,7 @@ display: none;
   }
   
   .affiliated-logos {
-display: none;
+    display: none;
   }
   .slider {
     position: relative;

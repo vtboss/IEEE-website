@@ -125,3 +125,218 @@ $(document).ready(function(){
     }
   );
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to start counting when element is in viewport
+  function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+  
+  // Counter animation function
+  function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-count'));
+    let count = 0;
+    const duration = 2000; // 2 seconds for the animation
+    const step = target / (duration / 30); // Update every 30ms
+    
+    const counter = setInterval(() => {
+      count += step;
+      if (count >= target) {
+        count = target;
+        clearInterval(counter);
+      }
+      element.querySelector('.stat-number').textContent = Math.floor(count) + '+';
+    }, 30);
+  }
+  
+  // Start animation when scrolled into view
+  function checkCounters() {
+    const statsSection = document.querySelector('.about-stats-container');
+    if (isElementInViewport(statsSection) && !statsSection.classList.contains('counted')) {
+      statsSection.classList.add('counted');
+      document.querySelectorAll('.stat-item').forEach(item => {
+        animateCounter(item);
+      });
+    }
+  }
+  
+  // Check on scroll
+  window.addEventListener('scroll', checkCounters);
+  
+  // Check on page load
+  checkCounters();
+});
+
+// Events Section Animation
+$(document).ready(function() {
+  // Check if element is in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  // Animate elements when they come into view
+  function animateOnScroll() {
+    $('.event-card').each(function() {
+      if (isInViewport(this) && !$(this).hasClass('animated')) {
+        $(this).addClass('animated');
+        $(this).css({
+          'opacity': '1',
+          'transform': 'translateY(0)'
+        });
+      }
+    });
+  }
+
+  // Reset animation state for initial load
+  $('.event-card').css({
+    'opacity': '0',
+    'transform': 'translateY(30px)',
+    'animation': 'none'
+  });
+
+  // Run animation check on scroll
+  $(window).on('scroll', animateOnScroll);
+  
+  // Run once on page load
+  animateOnScroll();
+
+  // Event card hover effect
+  $('.event-card').hover(
+    function() {
+      $(this).find('.event-image img').css({
+        'transform': 'scale(1.1)'
+      });
+      $(this).find('.event-title::after').css({
+        'width': '100%'
+      });
+    },
+    function() {
+      $(this).find('.event-image img').css({
+        'transform': 'scale(1)'
+      });
+      $(this).find('.event-title::after').css({
+        'width': '50px'
+      });
+    }
+  );
+});
+// Execoms Section Animations
+$(document).ready(function() {
+  // Check if element is in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  // Animate elements when they come into view
+  function animateOnScroll() {
+    const execomsSection = document.querySelector('.execoms');
+    
+    if (isInViewport(execomsSection) && !execomsSection.classList.contains('animated')) {
+      execomsSection.classList.add('animated');
+      
+      // Start animation sequence
+      $('.counselor').css({
+        'opacity': '1',
+        'transform': 'translateY(0)'
+      });
+      
+      setTimeout(() => {
+        $('.chair').css({
+          'opacity': '1',
+          'transform': 'translateY(0)'
+        });
+      }, 300);
+      
+      setTimeout(() => {
+        $('.co-chair').css({
+          'opacity': '1',
+          'transform': 'translateY(0)'
+        });
+      }, 600);
+      
+      setTimeout(() => {
+        $('.view-all-execoms').css({
+          'opacity': '1',
+          'transform': 'translateY(0)'
+        });
+      }, 900);
+    }
+  }
+
+  // Reset animation state for initial load
+  $('.counselor, .chair, .co-chair, .view-all-execoms').css({
+    'opacity': '0',
+    'transform': 'translateY(30px)',
+    'transition': 'all 0.6s ease-out'
+  });
+
+  // Run animation check on scroll
+  $(window).on('scroll', animateOnScroll);
+  
+  // Run once on page load
+  setTimeout(animateOnScroll, 300);
+
+  // Interactive hover effects
+  $('.member').hover(
+    function() {
+      $(this).find('.img-overlay').css('opacity', '1');
+      $(this).css('transform', 'translateY(-10px)');
+    },
+    function() {
+      $(this).find('.img-overlay').css('opacity', '0');
+      $(this).css('transform', 'translateY(0)');
+    }
+  );
+
+  // Social icons hover effect
+  $('.social-icon').hover(
+    function() {
+      $(this).css({
+        'transform': 'translateY(-3px) scale(1.1)',
+        'box-shadow': '0 5px 15px rgba(0, 0, 0, 0.15)'
+      });
+    },
+    function() {
+      $(this).css({
+        'transform': 'translateY(0) scale(1)',
+        'box-shadow': 'none'
+      });
+    }
+  );
+
+  // Ripple effect on view all button
+  $('.view-all-btn').on('mousedown', function(e) {
+    const x = e.pageX - $(this).offset().left;
+    const y = e.pageY - $(this).offset().top;
+    
+    const ripple = $('<span class="ripple"></span>');
+    ripple.css({
+      left: x,
+      top: y
+    });
+    
+    $(this).append(ripple);
+    
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+});

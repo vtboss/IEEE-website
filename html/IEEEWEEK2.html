@@ -4,8 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IEEE Events 2025</title>
+  <link rel="icon" type="image/png" href="../pics/sgbit_ieee_black-removebg-preview.png"/>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sofadi+One&display=swap');
+
     @font-face {
       font-family: "Geist";
       src: url("https://assets.codepen.io/605876/GeistVF.ttf") format("truetype");
@@ -80,39 +84,106 @@
       }
     }
 
-    /* --- Navbar --- */
-    nav {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      color: #E5E5E5;
-      position: sticky;
-      top: 0;
+    .max-width {
+      max-width: 1300px;
+      padding: 0 80px;
+      margin: auto;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      position: fixed;
       width: 100%;
-      padding: 12px 24px;
+      padding: 30px 0;
+      font-family: 'Ubuntu', sans-serif;
+      transition: all 0.3s ease;
       z-index: 1000;
+    }
+
+    .navbar.sticky {
+      padding: 15px 0;
+      background: #003366;
+    }
+
+    .navbar .max-width {
       display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    nav a {
+    .navbar .logo a {
       color: #fff;
+      font-size: 35px;
+      font-weight: 600;
+      font-family: 'Ubuntu', sans-serif;
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
     }
 
-    nav a:hover {
-      color: #80D8FF;
+    .navbar .logo a span {
+      color: #fff;
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    .navbar.sticky .logo a span {
+      color: orange;
+          font-family: 'Ubuntu', sans-serif;
+    }
+
+    .navbar .menu li {
+      list-style: none;
+      display: inline-block;
+    }
+
+    .navbar .menu li a {
+      position: relative;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      margin-left: 25px;
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .navbar .menu li a:hover {
+      color: orange;
+    }
+
+    .navbar.sticky .menu li a:hover {
+      color: orange;
+    }
+    .navbar .menu li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: orange;
+      transition: width 0.3s ease;
+    }
+
+    .navbar .menu li a:hover::after {
+      width: 100%;
+    }
+    .menu-btn {
+      display: none;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .menu-btn .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px;
+      background-color: #fff;
+      transition: all 0.3s ease;
     }
 
     /* --- Hero Section --- */
     .hero {
       text-align: center;
-      padding: 80px 20px 40px;
+      padding: 150px 20px 40px;
       position: relative;
       z-index: 1;
     }
@@ -120,7 +191,7 @@
     .hero h1 {
       font-size: 2.6rem;
       color: #F5F7FA;
-      font-family:  sans-serif;
+      font-family: 'Ubuntu', sans-serif;
       text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     }
 
@@ -128,6 +199,7 @@
       margin-top: 15px;
       font-size: 1.2rem;
       color: #D0D8E0;
+      font-family: 'Poppins', sans-serif;
     }
 
     /* --- Grid Section --- */
@@ -195,13 +267,59 @@
       transform: scale(1.05);
     }
 
+    /* Footer Styling */
     footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #AAA;
-      position: relative;
-      z-index: 1;
+      background-color: #333;
+      color: white;
+      padding: 2rem 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0 50px;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    footer h3 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: orange;
+    }
+
+    footer .social-media img {
+      margin-top: 10px;
+      width: 30px;
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    footer .social-media img:hover {
+      transform: scale(1.1);
+    }
+
+    footer .quick-links ul li {
+      margin-bottom: 10px;
     }
 
     /* Card Animation */
@@ -217,7 +335,63 @@
     .event-card:nth-child(5) { animation-delay: 0.5s; }
     .event-card:nth-child(6) { animation-delay: 0.6s; }
 
-    @media (max-width: 768px) {
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      .navbar .max-width {
+        padding: 0 20px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .menu-btn.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .menu-btn.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-btn.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      .navbar .menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: #003366;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        transition: left 0.3s ease;
+      }
+
+      .navbar .menu.active {
+        left: 0;
+      }
+
+      .navbar .menu li a {
+        font-size: 24px;
+      }
+
+      footer .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      footer .container > div {
+        margin-bottom: 30px;
+      }
+
+      .hero {
+        padding: 120px 20px 40px;
+      }
       .hero h1 { font-size: 1.8rem; }
     }
   </style>
@@ -235,14 +409,22 @@
   </div>
 
   <!-- Navbar -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="event1.html">Event 1</a>
-    <a href="event2.html">Event 2</a>
-    <a href="event3.html">Event 3</a>
-    <a href="event4.html">Event 4</a>
-    <a href="event5.html">Event 5</a>
-    <a href="event6.html">Event 6</a>
+  <nav class="navbar">
+    <div class="max-width">
+      <div class="logo"><a href="../index.html">IEEE <span>SGBIT</span></a></div>
+      <div class="menu-btn">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="execoms.html">Execoms</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- Hero Section -->
@@ -287,7 +469,77 @@
 
   <!-- Footer -->
   <footer>
-    © 2025 IEEE Student Branch | All Rights Reserved
+    <div class="container">
+      <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>Email: contactieeesgbit@gmail.com</p>
+        <p>Phone: +91 6366611853</p>
+      </div>
+
+      <div class="social-media">
+        <h3>Follow Us</h3>
+        <a href="https://facebook.com/ieee" target="_blank">
+          <img src="../pics/facebook.svg" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/ieee_sgbitofficial/" target="_blank">
+          <img src="../pics/instagram.svg" alt="Instagram">
+        </a>
+        <a href="https://www.linkedin.com/in/ieee-student-branch-sgbit-871802312/" target="_blank">
+          <img src="../pics/linkedin.svg" alt="LinkedIn">
+        </a>
+      </div>
+
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="https://www.ieee.org/">Membership</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.querySelector('.menu-btn');
+      const menu = document.querySelector('.menu');
+      
+      menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        menu.classList.toggle('active');
+        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !menuBtn.contains(e.target) && menu.classList.contains('active')) {
+          menu.classList.remove('active');
+          menuBtn.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+
+      // Close menu when clicking links
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('active');
+          menuBtn.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+      });
+    });
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 20) {
+        navbar.classList.add('sticky');
+      } else {
+        navbar.classList.remove('sticky');
+      }
+    });
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </body>
 </html>

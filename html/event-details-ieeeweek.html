@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE Student Branch - SGBIT</title>
+    <link rel="icon" type="image/png"  href="../pics/sgbit_ieee_black-removebg-preview.png"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sofadi+One&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        .max-width {
+            max-width: 1300px;
+            padding: 0 80px;
+            margin: auto;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 30px 0;
+            font-family: 'Ubuntu', sans-serif;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .navbar.sticky {
+            padding: 15px 0;
+            background: #003366;
+        }
+
+        .navbar .max-width {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .logo a {
+            color: #fff;
+            font-size: 35px;
+            font-weight: 600;
+        }
+
+        .navbar .logo a span {
+            color: #fff;
+        }
+
+        .navbar.sticky .logo a span {
+            color: orange;
+        }
+
+        .navbar .menu li {
+            list-style: none;
+            display: inline-block;
+        }
+
+        .navbar .menu li a {
+            position: relative;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 25px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .menu li a:hover {
+            color: orange;
+        }
+
+        .navbar.sticky .menu li a:hover {
+            color: orange;
+        }
+
+        .navbar .menu li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: orange;
+            transition: width 0.3s ease;
+        }
+
+        .navbar .menu li a:hover::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .menu-btn .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url("../pics/sgbit\ topview.jpg");
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        /* Events Section */
+        .events-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(0, 51, 102, 0.1);
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .event-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event-content {
+            padding: 40px;
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .event-title {
+            color: #003366;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(45deg, #003366, #0077be);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .event-subtitle {
+            color: orange;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        .event-description {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .event-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .event-meta {
+            background: linear-gradient(135deg, #003366 0%, #0077be 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.2);
+        }
+
+        .event-meta h4 {
+            color: white;
+            margin-bottom: 15px;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-meta h4::before {
+            content: '📅';
+            font-size: 1.5rem;
+        }
+
+        .event-meta p {
+            margin: 8px 0;
+            color: #f8f9fa;
+            font-weight: 500;
+        }
+
+        .event-rules, .event-prizes, .event-objective {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid orange;
+        }
+
+        .event-rules h4, .event-prizes h4, .event-objective h4 {
+            color: #003366;
+            margin-bottom: 15px;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-rules h4::before {
+            content: '📋';
+            font-size: 1.5rem;
+        }
+
+        .event-prizes h4::before {
+            content: '🏆';
+            font-size: 1.5rem;
+        }
+
+        .event-objective h4::before {
+            content: '🎯';
+            font-size: 1.5rem;
+        }
+
+        .event-rules ul, .event-prizes ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .event-rules li, .event-prizes li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-rules li:last-child, .event-prizes li:last-child {
+            border-bottom: none;
+        }
+
+        .event-objective p {
+            color: #555;
+            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 1px solid #dee2e6;
+        }
+
+        .contact-info h4 {
+            color: #003366;
+            margin-bottom: 15px;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info h4::before {
+            content: '👥';
+            font-size: 1.5rem;
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+            color: #555;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .register-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(0, 51, 102, 0.05) 0%, rgba(255, 165, 0, 0.05) 100%);
+            border-radius: 15px;
+        }
+
+        .register-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #003366 0%, #0077be 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(135deg, orange 0%, #ff8c00 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 165, 0, 0.4);
+        }
+
+        .register-btn::before {
+            content: '🚀 ';
+            margin-right: 8px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 0 50px;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        footer h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: orange;
+        }
+
+        footer .social-media img {
+            margin-top: 10px;
+            width: 30px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        footer .social-media img:hover {
+            transform: scale(1.1);
+        }
+
+        footer .quick-links ul li {
+            margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .max-width {
+                padding: 0 20px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .menu-btn.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .menu-btn.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-btn.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .navbar .menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: #003366;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: left 0.3s ease;
+            }
+
+            .navbar .menu.active {
+                left: 0;
+            }
+
+            .navbar .menu li a {
+                font-size: 24px;
+            }
+
+            .event-content {
+                flex-direction: column;
+            }
+
+            .event-image {
+                order: -1;
+            }
+
+            footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            footer .container > div {
+                margin-bottom: 30px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar remains same -->
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="../index.html">IEEE <span>SGBIT</span></a></div>
+                <div class="menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="execoms.html">Execoms</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="max-width">
+            <h1>IEEE SGBIT EVENTS</h1>
+            <p>Discover, Learn, and Grow with Us</p>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section">
+        <div class="max-width">
+            <div class="event-card" id="hardwaredebug2025">
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2 class="event-title">Progressive Challenge Hunt</h2>
+                        <h3 class="event-subtitle">Hardware Debugging Competition</h3>
+                        <p class="event-description">
+                            A 3-round online hardware debugging competition designed to test students' theoretical knowledge 
+                            and practical circuit troubleshooting skills. Participants progress from basic quizzes to 
+                            hands-on debugging of complex circuits using Tinkercad, applying systematic approaches to 
+                            identify and fix faults.
+                        </p>
+                    </div>
+            
+                    <div class="event-details-grid">
+                        <div class="event-meta">
+                            <h4>Event Details</h4>
+                            <p><strong>📅 Date:</strong> October 13–15, 2025 (IEEE Week)</p>
+                            <p><strong>⏰ Time:</strong> 10:00 AM – 12:15 PM</p>
+                            <p><strong>📍 Venue:</strong> EC Lab, S.G. Balekundri Institute of Technology</p>
+                            <p><strong>💰 Fee:</strong> ₹20 (IEEE) | ₹50 (Non-IEEE)</p>
+                        </div>
+            
+                        <div class="event-rules">
+                            <h4>Rules & Regulations</h4>
+                            <ul>
+                                <li>👥 Team of 2 students from any department & semester</li>
+                                <li>💻 Participants must bring their own laptops</li>
+                                <li>🧠 Round 1: MCQ Quiz (Top 20 teams advance)</li>
+                                <li>🔧 Round 2: Single-fault debugging (Top 8 teams advance)</li>
+                                <li>⚡ Round 3: Multi-fault debugging (Final round)</li>
+                                <li>🚫 No unfair means — immediate disqualification</li>
+                            </ul>
+                        </div>
+            
+                        <div class="event-prizes">
+                            <h4>Prizes & Recognition</h4>
+                            <ul>
+                                <li>🥇 1st Place: Certificate + Goodies</li>
+                                <li>🥈 2nd Place: Certificate</li>
+                                <li>📜 All participants receive E-certificates</li>
+                            </ul>
+                        </div>
+            
+                        <div class="event-objective">
+                            <h4>Event Objective</h4>
+                            <p>
+                                To develop systematic debugging skills, strengthen circuit simulation knowledge, 
+                                and foster collaborative problem-solving through progressive difficulty levels.
+                            </p>
+                        </div>
+                    </div>
+            
+                    <div class="contact-info">
+                        <h4>Event Coordinators</h4>
+                        <p><strong>Veeresh P T</strong> (5th Sem, ECE)</p>
+                        <p><strong>Yash Pattar</strong> (5th Sem, ECE)</p>
+                        <p><strong>Sanskaar Sateesh Undale</strong> (3rd Sem, CSE)</p>
+                        <p><strong>📧 Email:</strong> contactieeesgbit@gmail.com</p>
+                    </div>
+            
+                    <div class="register-section">
+                        <a href="https://forms.gle/HARDWAREDEBUG2025" class="register-btn" target="_blank">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            
+             
+
+
+
+            <!-- Add more event cards following the same structure -->
+            
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="contactinfo">
+                <h3>Contact Us</h3>
+                <p>Email: contactieeesgbit@gmail.com</p>
+                <p>Phone: +91 6366611853</p>
+            </div>
+
+            <div class="social-media">
+                <h3>Follow Us</h3>
+                <a href="https://facebook.com/ieee" target="_blank">
+                    <img src="../pics/facebook.svg" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/ieee_sgbitofficial/" target="_blank">
+                    <img src="../pics/instagram.svg" alt="Instagram">
+                </a>
+                <a href="https://www.linkedin.com/in/ieee-student-branch-sgbit-871802312/" target="_blank">
+                    <img src="../pics/linkedin.svg" alt="LinkedIn">
+                </a>
+            </div>
+
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="https://www.ieee.org/">Membership</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash;
+            if (hash) {
+                setTimeout(() => {
+                    document.querySelector(hash).scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }, 100);
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.querySelector('.menu-btn');
+            const menu = document.querySelector('.menu');
+            
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('active');
+                menu.classList.toggle('active');
+                document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !menuBtn.contains(e.target) && menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close menu when clicking links
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        });
+        // Navbar sticky effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('sticky');
+            } else {
+                navbar.classList.remove('sticky');
+            }
+        });
+
+        // Event card animation on scroll
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        document.querySelectorAll('.event-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

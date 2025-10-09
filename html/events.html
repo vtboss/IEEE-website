@@ -609,19 +609,21 @@
                 <div class="card upcoming">
                     <div class="card-icon">📅</div>
                     <h3>Upcoming Events</h3>
-                    <p class="count">2</p>
+                    <p class="count">1</p>
                     <div class="card-details">
                         <ul>
-                            <li>Jamming Session - Mar 25</li>
+                            <li><a href="IEEEWEEK2.html" class="event-link">IEEE WEEK 2025</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="card ongoing">
                     <div class="card-icon">🎯</div>
-                    <h3>Ongoing Events</h3>
-                    <p class="count">0</p>
+                    <h3>Register Now</h3>
+                    <p class="count">1</p>
                     <div class="card-details">
-
+                        <ul>
+                            <li><a href="IEEEWEEK2.html" class="event-link" target="_blank">IEEE WEEK 2025</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="card past">
@@ -630,6 +632,8 @@
                     <p class="count">3</p>
                     <div class="card-details">
                         <ul>
+                            <li><a href="event-details.html#ignition2025" class="event-link">IDEATHON</a></li>
+                            <li><a href="event-details.html#ignition2025" class="event-link">IGNITION - Mar 5</a></li>
                             <li><a href="event-details.html#ignition2025" class="event-link">IGNITION - Mar 5</a></li>
                         </ul>
                     </div>
@@ -720,28 +724,61 @@
             {
                 date: "March 5, 2025",
                 title: "IGNITION",
-                description: "Inauguration of IEEE Events 2024. This event aims to inspire students, foster collaboration, and promote professional development within the engineering community at S.G. Balekundri Institute of Technology.",
-                image: "../pics/ignition2025.jpeg"
+                description: "Inauguration of IEEE Events 2025. This event aims to inspire students, foster collaboration, and promote professional development within the engineering community at S.G. Balekundri Institute of Technology.",
+                image: "../pics/ignition2025.jpeg",
+                link: "event-details.html#ignition2025"
+            },
+            {
+                date: "March 20, 2025",
+                title: "LAUNCHPAD",
+                description: "A hands-on workshop on Git, GitHub & Resume Building organized by IEEE SGBIT. Empowering students with essential version control skills, open-source contribution knowledge, and professional resume strategies.",
+                image: "../pics/events/launch_2025.jpeg",
+                link: "event-details.html#launchpad2025"
+            },
+            {
+                date: "March 25, 2025",
+                title: "JAMMING SESSION",
+                description: "A melodious evening of rhythm, harmony, and musical expression at IEEE SGBIT. An informal open mic jamming event celebrating talent, creativity, and togetherness through music.",
+                image: "../pics/events/jam_2025.jpg",
+                link: "event-details.html#jammingsession2025"
+            },
+            {
+                date: "April 29, 2025",
+                title: "VAAD VIVAAD",
+                description: "A thrilling debate competition hosted by IEEE SGBIT. A platform for students to challenge ideas, enhance critical thinking, and showcase their public speaking skills on thought-provoking topics.",
+                image: "../pics/events/Vaad_2025.jpeg",
+                link: "event-details.html#vaadvivaad2025"
+            },
+            {
+                date: "September 12, 2025",
+                title: "IDEATHON",
+                description: "An innovation sprint encouraging students to brainstorm and pitch impactful solutions to real-world problems under time constraints. Fostering teamwork, creativity, and problem-solving.",
+                image: "../pics/events/Idea_25.jpg",
+                link: "event-details.html#ideathon2025"
             },
             {
                 date: "April 27, 2024",
                 title: "HACK-N-HUNT",
                 description: "HACK-N-HUNT is a competition that challenges participants to discover vulnerabilities, promoting collaboration, technical skills, and real-world problem-solving in a simulated environment.",
-                image: "../pics/HNH.heic"
+                image: "../pics/HNH.heic",
+                link: "event-details.html#hack-n-hunt"
             },
             {
                 date: "March 22, 2024",
                 title: "NKSS WiE Congress",
                 description: "The NKSS WiE Congress empowers women in engineering through networking, workshops, and inspiring talks, promoting professional development and recognizing outstanding contributions in STEM fields.",
-                image: "../pics/WiE.heic"
+                image: "../pics/WiE.heic",
+                link: "event-details.html#nkss-wie-congress"
             },
             {
                 date: "February 19, 2024",
                 title: "IGNITION",
                 description: "Inauguration of IEEE Events 2024. This event aims to inspire students, foster collaboration, and promote professional development within the engineering community at S.G. Balekundri Institute of Technology.",
-                image: "../pics/ev1-01.jpg"
+                image: "../pics/ev1-01.jpg",
+                link: "event-details.html#ignition"
             }
         ];
+
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.card');
             
@@ -771,8 +808,9 @@
         });
         function createTimelineItems() {
             const container = document.getElementById('timeline-container');
-            
-            timelineData.forEach(event => {
+            const sortedData = timelineData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            sortedData.forEach(event => {
                 const timelineItem = document.createElement('div');
                 timelineItem.className = 'timeline-item';
                 
@@ -783,14 +821,13 @@
                         <img src="${event.image}" alt="${event.title}">
                         <h3>${event.title}</h3>
                         <p>${event.description}</p>
-                        <a href="#" class="learn-more-btn">Learn More</a>
+                        <a href="${event.link}" class="learn-more-btn">Learn More</a>
                     </div>
                 `;
                 
                 container.appendChild(timelineItem);
             });
         }
-
         function observeTimelineItems() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {

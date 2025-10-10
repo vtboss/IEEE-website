@@ -230,12 +230,29 @@
             margin-right: auto;
         }
 
-        .event-details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
+ .event-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* desktop: 2 columns */
+    gap: 20px;
+}
+
+.event-rules {
+    grid-column: span 2; /* make rules section full width on desktop too */
+}
+
+/* 📱 Responsive fix for mobile */
+@media (max-width: 768px) {
+    .event-details-grid {
+        grid-template-columns: 1fr;  /* switch to single column */
+        gap: 15px;
+    }
+
+    .event-rules,
+    .event-meta,
+    .event-objective {
+        grid-column: span 1; /* make sure all sections fit nicely */
+    }
+}
 
 .event-rules {
     grid-column: span 2; /* 🟡 Makes rules section stretch full width */
